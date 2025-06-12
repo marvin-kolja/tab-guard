@@ -10,6 +10,9 @@
 			"strict_min_version": "128.0"
 		}
 	},
+	"icons": {
+		"128": "assets/icon128.png"
+	},
 	"content_scripts": [
 		{
 			"run_at": "document_start",

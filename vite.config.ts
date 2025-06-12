@@ -17,6 +17,10 @@ export default defineConfig(({mode}) => {
 					copy({
 						targets: [
 							{src: './source/manifest.json', dest: 'dist'},
+							{
+								src: './source/icon128.png',
+								dest: 'dist/assets',
+							},
 						],
 						hook: 'writeBundle',
 						verbose: true,
