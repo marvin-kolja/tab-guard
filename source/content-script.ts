@@ -6,12 +6,16 @@ function shouldWarnBeforeClosure(): boolean {
 	)
 }
 
-if (shouldWarnBeforeClosure()) {
-	console.debug('Temporary chat detected, setting up unload warning...')
-	window.addEventListener('beforeunload', (e) => {
+function beforeUnloadCallback(e: BeforeUnloadEvent) {
+	if (shouldWarnBeforeClosure()) {
+		console.debug('Registering beforeunload listener for temporary chat.')
 		e.preventDefault()
 		e.returnValue = ''
-	})
-} else {
-	console.debug('No temporary chat detected, no warning will be shown.')
+	} else {
+		console.debug('No temporary chat detected, no listener registered.')
+	}
 }
+
+window.removeEventListener('beforeunload', beforeUnloadCallback)
+console.debug('Initializing content script for tab guard.')
+window.addEventListener('beforeunload', beforeUnloadCallback)
