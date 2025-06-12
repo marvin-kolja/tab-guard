@@ -13,12 +13,13 @@ export default defineConfig(({mode}) => {
 				output: {
 					entryFileNames: '[name].js',
 				},
-				logLevel: mode == 'production' ? 'info' : 'debug',
 				plugins: [
 					copy({
 						targets: [
 							{src: './source/manifest.json', dest: 'dist'},
 						],
+						hook: 'writeBundle',
+						verbose: true
 					}),
 				],
 			},
