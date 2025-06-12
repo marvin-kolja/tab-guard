@@ -1,0 +1,20 @@
+{
+	"manifest_version": 3,
+	"name": "ChatGPT Temporary Chat Protection",
+	"version": "1.0.0",
+	"description": "Prevents ChatGPT Temporary Chats from being closed accidentally.",
+	"minimum_chrome_version": "123",
+	"browser_specific_settings": {
+		"gecko": {
+			"id": "marvin.willms@proton.me",
+			"strict_min_version": "128.0"
+		}
+	},
+	"content_scripts": [
+		{
+			"run_at": "document_start",
+			"matches": ["https://chatgpt.com/*"],
+			"js": ["content-script.js"]
+		}
+	]
+}

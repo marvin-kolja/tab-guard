@@ -1,0 +1,35 @@
+{
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"build": "npm-run-all build:* --continue-on-error",
+		"build:typescript": "tsc --noEmit",
+		"build:bundle": "vite build",
+		"fix": "eslint . --ext .ts --fix",
+		"format": "prettier . --write",
+		"lint": "npm-run-all lint:* --continue-on-error",
+		"lint:ts": "eslint . --ext .ts",
+		"lint:prettier": "prettier . --check",
+		"watch": "run-p watch:* --continue-on-error",
+		"watch:typescript": "tsc --noEmit --watch --preserveWatchOutput",
+		"watch:bundle": "vite build -m development --watch"
+	},
+	"devDependencies": {
+		"@eslint-recommended/eslint-config": "^28.0.0",
+		"@typescript-eslint/eslint-plugin": "^8.34.0",
+		"@typescript-eslint/parser": "^8.34.0",
+		"eslint": "^8.57.1",
+		"npm-run-all2": "^8.0.4",
+		"prettier": "^3.5.3",
+		"rollup-plugin-copy": "^3.5.0",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5"
+	},
+	"engines": {
+		"node": ">= 20",
+		"npm": ">= 10"
+	},
+	"webExt": {
+		"sourceDir": "dist"
+	}
+}
