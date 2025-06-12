@@ -19,7 +19,7 @@ export default defineConfig(({mode}) => {
 							{src: './source/manifest.json', dest: 'dist'},
 						],
 						hook: 'writeBundle',
-						verbose: true
+						verbose: true,
 					}),
 				],
 			},
