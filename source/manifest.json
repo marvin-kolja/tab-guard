@@ -3,6 +3,7 @@
 	"name": "Temporary Chat Tab Guard for ChatGPT",
 	"version": "1.0.0",
 	"description": "Prevents your temporary chats from accidental tab closure.",
+	"homepage_url": "https://github.com/marvin-kolja/tab-guard",
 	"minimum_chrome_version": "123",
 	"browser_specific_settings": {
 		"gecko": {
