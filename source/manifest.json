@@ -7,7 +7,7 @@
 	"minimum_chrome_version": "123",
 	"browser_specific_settings": {
 		"gecko": {
-			"id": "marvin.willms@proton.me",
+			"id": "{7460adc9-300e-4e26-b2ee-1a8f27f7e0b3}",
 			"strict_min_version": "128.0"
 		}
 	},
