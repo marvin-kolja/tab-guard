@@ -1,6 +1,6 @@
 {
 	"manifest_version": 3,
-	"name": "Temporary Chat Tab Guard for ChatGPT",
+	"name": "Tab Guard for ChatGPT",
 	"version": "1.0.0",
 	"description": "Prevents your temporary chats from accidental tab closure.",
 	"homepage_url": "https://github.com/marvin-kolja/tab-guard",
