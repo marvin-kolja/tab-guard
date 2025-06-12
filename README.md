@@ -7,7 +7,7 @@ Prevents your temporary chats from accidental tab closure.
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
   * [Build](#build)
-    * [Build Zip (optional)](#build-zip-optional)
+  * [Package (optional)](#package-optional)
 * [License](#license)
 <!-- TOC -->
 
@@ -40,7 +40,7 @@ npm run build:bundle
 
 - This will create a production build of the extension in the `dist` directory.
 
-#### Package (optional)
+### Package (optional)
 
 To create a zip file using `web-ext`, run:
 ```bash
