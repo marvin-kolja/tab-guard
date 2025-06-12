@@ -5,6 +5,7 @@
 		"build": "npm-run-all build:* --continue-on-error",
 		"build:typescript": "tsc --noEmit",
 		"build:bundle": "vite build",
+		"build:zip": "web-ext build --overwrite-dest",
 		"fix": "eslint . --ext .ts --fix",
 		"format": "prettier . --write",
 		"lint": "npm-run-all lint:* --continue-on-error",
