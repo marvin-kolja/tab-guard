@@ -1,8 +1,8 @@
 {
 	"manifest_version": 3,
-	"name": "ChatGPT Temporary Chat Protection",
+	"name": "Temporary Chat Tab Guard for ChatGPT",
 	"version": "1.0.0",
-	"description": "Prevents ChatGPT Temporary Chats from being closed accidentally.",
+	"description": "Prevents your temporary chats from accidental tab closure.",
 	"minimum_chrome_version": "123",
 	"browser_specific_settings": {
 		"gecko": {
