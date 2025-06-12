@@ -4,7 +4,7 @@
 *.iml
 
 .DS_Store
-web-ext-artifacts
+artifacts
 
 node_modules
 dist
