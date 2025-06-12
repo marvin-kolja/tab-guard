@@ -40,11 +40,11 @@ npm run build:bundle
 
 - This will create a production build of the extension in the `dist` directory.
 
-#### Build Zip (optional)
+#### Package (optional)
 
 To create a zip file using `web-ext`, run:
 ```bash
-npm run build:zip
+npm run package
 ```
 
 - This will create a web-ext build from `dist` inside the `artifacts` directory.
