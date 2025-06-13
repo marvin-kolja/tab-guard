@@ -9,6 +9,7 @@ export default defineConfig(({mode}) => {
 			rollupOptions: {
 				input: {
 					'content-script': './source/content-script.ts',
+					'background-script': './source/background-script.ts',
 				},
 				output: {
 					entryFileNames: '[name].js',

@@ -14,6 +14,11 @@
 	"icons": {
 		"128": "assets/icon128.png"
 	},
+	"background": {
+		"service_worker": "background-script.js",
+		"type": "module"
+	},
+	"host_permissions": ["https://chatgpt.com/*"],
 	"content_scripts": [
 		{
 			"run_at": "document_start",

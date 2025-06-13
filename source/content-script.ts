@@ -39,6 +39,21 @@ function beforeUnloadCallback(e: BeforeUnloadEvent) {
 	}
 }
 
-window.removeEventListener('beforeunload', beforeUnloadCallback)
-console.debug('Initializing content script for tab guard.')
-window.addEventListener('beforeunload', beforeUnloadCallback)
+function onUrlChangeCallback() {
+	if (isTemporaryChatURL()) {
+		window.addEventListener('beforeunload', beforeUnloadCallback)
+	} else {
+		window.removeEventListener('beforeunload', beforeUnloadCallback)
+	}
+}
+
+function init() {
+	console.debug('Initializing content script for tab guard.')
+	chrome.runtime.onMessage.addListener((message: string) => {
+		if (message === 'url-changed') {
+			onUrlChangeCallback()
+		}
+	})
+}
+
+init()
