@@ -158,8 +158,8 @@ function onResizeCallback() {
  * Callback to handle runtime messages.
  * @param message
  */
-function handleMessage(message: string) {
-	if (message === 'url-changed') {
+function handleMessage(message: {action: string}) {
+	if (message.action === 'url-changed') {
 		if (isTemporaryChatURL()) {
 			window.addEventListener('beforeunload', beforeUnloadCallback)
 			window.addEventListener(
