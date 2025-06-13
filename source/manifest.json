@@ -19,7 +19,6 @@
 		"type": "module",
 		"scripts": ["background-script.js"]
 	},
-	"host_permissions": ["https://chatgpt.com/*"],
 	"content_scripts": [
 		{
 			"run_at": "document_start",
