@@ -67,6 +67,14 @@ function beforeUnloadCallback(e: BeforeUnloadEvent) {
  */
 function getElementsToHide(): HTMLElement[] {
 	const elements = [
+		document.getElementById('open-sidebar-button'),
+		...document.querySelectorAll(
+			'[data-testid="model-switcher-dropdown-button"]',
+		),
+		...document.querySelectorAll(
+			'[data-testid="open-sidebar-button"]',
+		),
+		...document.querySelectorAll('a[href="/"]'),
 		document.getElementById('page-header'),
 		document.getElementById('stage-slideover-sidebar'),
 	]
