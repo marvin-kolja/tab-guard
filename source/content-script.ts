@@ -1,9 +1,25 @@
 function shouldWarnBeforeClosure(): boolean {
 	const url = new URL(window.location.href)
 	const params = url.searchParams
-	return (
+	const urlIsTemporaryChat =
 		params.has('temporary-chat') && params.get('temporary-chat') === 'true'
-	)
+
+	if (!urlIsTemporaryChat) {
+		console.debug('Not a temporary chat URL')
+		return false
+	}
+
+	const documentHasArticles =
+		document.body.querySelectorAll('article').length > 0
+
+	if (!documentHasArticles) {
+		console.debug(
+			'No articles found in the document. Assuming no data to save.',
+		)
+		return false
+	}
+
+	return true
 }
 
 function beforeUnloadCallback(e: BeforeUnloadEvent) {
