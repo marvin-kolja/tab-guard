@@ -1,18 +1,25 @@
-function shouldWarnBeforeClosure(): boolean {
+function isTemporaryChatURL(): boolean {
 	const url = new URL(window.location.href)
 	const params = url.searchParams
-	const urlIsTemporaryChat =
+	return (
 		params.has('temporary-chat') && params.get('temporary-chat') === 'true'
+	)
+}
 
-	if (!urlIsTemporaryChat) {
+function chatHasArticles(): boolean {
+	const articles = document
+		.getElementById('thread')!
+		.querySelectorAll('article')
+	return articles.length > 0
+}
+
+function shouldWarnBeforeClosure(): boolean {
+	if (!isTemporaryChatURL()) {
 		console.debug('Not a temporary chat URL')
 		return false
 	}
 
-	const documentHasArticles =
-		document.body.querySelectorAll('article').length > 0
-
-	if (!documentHasArticles) {
+	if (!chatHasArticles()) {
 		console.debug(
 			'No articles found in the document. Assuming no data to save.',
 		)
