@@ -13,7 +13,8 @@
 		"lint:prettier": "prettier . --check",
 		"watch": "run-p watch:* --continue-on-error",
 		"watch:typescript": "tsc --noEmit --watch --preserveWatchOutput",
-		"watch:bundle": "vite build -m development --watch"
+		"watch:bundle": "vite build -m development --watch",
+		"run:firefox": "web-ext run --start-url=https://chatgpt.com/"
 	},
 	"devDependencies": {
 		"@eslint-recommended/eslint-config": "^28.0.0",
