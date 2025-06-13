@@ -55,6 +55,7 @@ jobs:
             -   uses: actions/download-artifact@v4
                 with:
                     name: ${{ env.DIST_DIR }}
+                    path: ${{ env.DIST_DIR }}
             -   name: Upload build and source code
                 run: npx web-ext sign --channel listed
                 env:
