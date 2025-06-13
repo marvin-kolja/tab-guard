@@ -89,7 +89,7 @@ function getElementsToHide(): HTMLElement[] {
  * @param elements - An array of HTML elements to hide.
  */
 function hideElements(elements: HTMLElement[]): () => void {
-	console.debug(`Hiding ${elements.length} elements.`)
+	console.debug('Hiding elements.')
 	for (const element of elements) {
 		element.hidden = true
 	}
