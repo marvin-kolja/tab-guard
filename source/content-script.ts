@@ -1,3 +1,13 @@
+/**
+ * Reference to the MutationObserver that observes the chat for new `article`
+ * elements.
+ */
+let articleObserver: MutationObserver | null = null
+
+/**
+ * Checks if the current URL is a temporary chat URL by looking at the query
+ * parameters.
+ */
 function isTemporaryChatURL(): boolean {
 	const url = new URL(window.location.href)
 	const params = url.searchParams
@@ -6,6 +16,9 @@ function isTemporaryChatURL(): boolean {
 	)
 }
 
+/**
+ * Checks if the chat has any `article` elements in the `#thread` element.
+ */
 function chatHasArticles(): boolean {
 	const articles = document
 		.getElementById('thread')!
@@ -13,6 +26,11 @@ function chatHasArticles(): boolean {
 	return articles.length > 0
 }
 
+/**
+ * Checks if the current URL is a temporary chat URL and if there are articles
+ * present in the chat. If both conditions are met, it returns `true`,
+ * indicating that a warning should be shown before closing the chat.
+ */
 function shouldWarnBeforeClosure(): boolean {
 	if (!isTemporaryChatURL()) {
 		console.debug('Not a temporary chat URL')
@@ -29,6 +47,10 @@ function shouldWarnBeforeClosure(): boolean {
 	return true
 }
 
+/**
+ * Callback to be executed before the window is unloaded.
+ * @param e - `BeforeUnloadEvent`
+ */
 function beforeUnloadCallback(e: BeforeUnloadEvent) {
 	if (shouldWarnBeforeClosure()) {
 		console.debug('Preventing closure of temporary chat.')
@@ -39,21 +61,115 @@ function beforeUnloadCallback(e: BeforeUnloadEvent) {
 	}
 }
 
-function onUrlChangeCallback() {
-	if (isTemporaryChatURL()) {
-		window.addEventListener('beforeunload', beforeUnloadCallback)
-	} else {
-		window.removeEventListener('beforeunload', beforeUnloadCallback)
+/**
+ * Returns an array of elements that should be hidden when a temporary chat is
+ * active.
+ */
+function getElementsToHide(): HTMLElement[] {
+	const elements = [
+		document.getElementById('page-header'),
+		document.getElementById('stage-slideover-sidebar'),
+	]
+
+	return elements.filter((el): el is HTMLElement => el !== null)
+}
+
+/**
+ * Sets the `hidden` property of the provided elements to `true`.
+ *
+ * This function returns a cleanup function that restores the visibility
+ * of the elements by setting their `hidden` property to `false`.
+ *
+ * @param elements - An array of HTML elements to hide.
+ */
+function hideElements(elements: HTMLElement[]): () => void {
+	console.debug(`Hiding ${elements.length} elements.`)
+	for (const element of elements) {
+		element.hidden = true
+	}
+	return () => {
+		console.debug('Restoring visibility of hidden elements.')
+		for (const element of elements) {
+			element.hidden = false
+		}
+	}
+}
+
+const CONVERSATION_EXISTS = 'conversation-exists'
+
+/**
+ * Observes the chat for new `article` elements. It will trigger the
+ * `CONVERSATION_EXISTS` event when an article is found, and then disconnect
+ * itself.
+ *
+ * It will trigger the `CONVERSATION_EXISTS` event if articles are already
+ * present. In that case, it will not start observing.
+ */
+function observeUntilArticle() {
+	if (chatHasArticles()) {
+		window.dispatchEvent(new Event(CONVERSATION_EXISTS))
+		console.debug('Articles found, not starting observer.')
+		return null
+	}
+	const observer = new MutationObserver((mutations, observer) => {
+		for (const mutation of mutations) {
+			if (mutation.type === 'childList') {
+				if (chatHasArticles()) {
+					window.dispatchEvent(new Event(CONVERSATION_EXISTS))
+					console.debug('Articles found, stopping observer.')
+					observer.disconnect()
+				}
+			}
+		}
+	})
+	observer.observe(document.getElementById('thread')!, {
+		childList: true,
+		subtree: true,
+	})
+	console.debug('Article observer initialized.')
+
+	return observer
+}
+
+/**
+ * Callback to be executed when `CONVERSATION_EXISTS` event is triggered.
+ */
+function conversationExistsCallback() {
+	hideElements(getElementsToHide())
+}
+
+/**
+ * Callback to handle runtime messages.
+ * @param message
+ */
+function handleMessage(message: string) {
+	if (message === 'url-changed') {
+		if (isTemporaryChatURL()) {
+			window.addEventListener('beforeunload', beforeUnloadCallback)
+			window.addEventListener(
+				CONVERSATION_EXISTS,
+				conversationExistsCallback,
+			)
+			articleObserver = observeUntilArticle()
+		} else {
+			window.removeEventListener('beforeunload', beforeUnloadCallback)
+			window.removeEventListener(
+				CONVERSATION_EXISTS,
+				conversationExistsCallback,
+			)
+			if (articleObserver) {
+				console.debug('Disconnecting article observer.')
+				articleObserver.disconnect()
+				articleObserver = null
+			}
+		}
 	}
 }
 
 function init() {
 	console.debug('Initializing content script for tab guard.')
-	chrome.runtime.onMessage.addListener((message: string) => {
-		if (message === 'url-changed') {
-			onUrlChangeCallback()
-		}
-	})
+	chrome.runtime.onMessage.removeListener(handleMessage)
+	chrome.runtime.onMessage.addListener(handleMessage)
 }
 
 init()
