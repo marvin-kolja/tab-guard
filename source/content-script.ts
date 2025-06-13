@@ -139,6 +139,16 @@ function conversationExistsCallback() {
 }
 
 /**
+ * Callback to be executed when the window is resized.
+ * It will dispatch the `CONVERSATION_EXISTS` event if articles are present.
+ */
+function onResizeCallback() {
+	if (chatHasArticles()) {
+		window.dispatchEvent(new Event(CONVERSATION_EXISTS))
+	}
+}
+
+/**
  * Callback to handle runtime messages.
  * @param message
  */
@@ -150,6 +160,7 @@ function handleMessage(message: string) {
 				CONVERSATION_EXISTS,
 				conversationExistsCallback,
 			)
+			window.addEventListener('resize', onResizeCallback)
 			articleObserver = observeUntilArticle()
 		} else {
 			window.removeEventListener('beforeunload', beforeUnloadCallback)
@@ -157,6 +168,7 @@ function handleMessage(message: string) {
 				CONVERSATION_EXISTS,
 				conversationExistsCallback,
 			)
+			window.removeEventListener('resize', onResizeCallback)
 			if (articleObserver) {
 				console.debug('Disconnecting article observer.')
 				articleObserver.disconnect()
