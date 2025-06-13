@@ -24,11 +24,11 @@ function shouldWarnBeforeClosure(): boolean {
 
 function beforeUnloadCallback(e: BeforeUnloadEvent) {
 	if (shouldWarnBeforeClosure()) {
-		console.debug('Registering beforeunload listener for temporary chat.')
+		console.debug('Preventing closure of temporary chat.')
 		e.preventDefault()
 		e.returnValue = ''
 	} else {
-		console.debug('No temporary chat detected, no listener registered.')
+		console.debug('No need to prevent closure of temporary chat.')
 	}
 }
 
