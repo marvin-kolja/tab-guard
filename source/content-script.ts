@@ -71,9 +71,7 @@ function getElementsToHide(): HTMLElement[] {
 		...document.querySelectorAll(
 			'[data-testid="model-switcher-dropdown-button"]',
 		),
-		...document.querySelectorAll(
-			'[data-testid="open-sidebar-button"]',
-		),
+		...document.querySelectorAll('[data-testid="open-sidebar-button"]'),
 		...document.querySelectorAll('a[href="/"]'),
 		document.getElementById('page-header'),
 		document.getElementById('stage-slideover-sidebar'),
