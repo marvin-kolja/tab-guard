@@ -16,7 +16,8 @@
 	},
 	"background": {
 		"service_worker": "background-script.js",
-		"type": "module"
+		"type": "module",
+		"scripts": ["background-script.js"]
 	},
 	"host_permissions": ["https://chatgpt.com/*"],
 	"content_scripts": [
