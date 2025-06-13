@@ -19,13 +19,13 @@ jobs:
             -   run: npm ci
             -   name: Test and build
                 run: npm run build
-            -   name: Package extension
-                run: npm run package
             -   name: Create tag if necessary
                 uses: fregante/daily-version-action@v2
             -   name: Update manifest.json with version ${{ env.DAILY_VERSION}}
                 if: env.DAILY_VERSION_CREATED
                 run: npx dot-json@1 "$DIST_DIR/manifest.json" version "$DAILY_VERSION"
+            -   name: Package extension
+                run: npm run package
             -   name: Ready for "submit" jobs
                 if: env.DAILY_VERSION_CREATED
                 uses: actions/upload-artifact@v4
@@ -36,7 +36,6 @@ jobs:
                 if: env.DAILY_VERSION_CREATED
                 env:
                     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                working-directory: ${{ env.DIST_DIR }}
                 run: |
                     FILENAME="$PROJECT_NAME-$DAILY_VERSION-for-local-testing-only.zip"
                     mv artifacts/tab-guard.zip $FILENAME
@@ -56,7 +55,6 @@ jobs:
                     name: ${{ env.DIST_DIR }}
             -   name: Upload build and source code
                 run: npx web-ext sign --channel listed
-                working-directory: ${{ env.DIST_DIR }}
                 env:
                     WEB_EXT_API_KEY: ${{ secrets.API_KEY }}
                     WEB_EXT_API_SECRET: ${{ secrets.API_SECRET }}
