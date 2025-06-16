@@ -1,4 +1,4 @@
-# Tab Guard for ChatGPT
+# <img src="source/icon128.png" width="50" align="center" alt="Icon"> Tab Guard for ChatGPT
 
 Prevents your temporary chats from accidental tab closure.
 
