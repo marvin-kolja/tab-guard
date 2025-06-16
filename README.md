@@ -2,13 +2,6 @@
 
 Prevents your temporary chats from accidental tab closure.
 
-- [Development](#development)
-    - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [Build](#build)
-    - [Package (optional)](#package-optional)
-- [License](#license)
-
 ## Development
 
 [dev.md](dev.md) contains instructions for setting up the development environment, building the extension, and packaging it for distribution.
