@@ -188,6 +188,9 @@ function init() {
 	console.debug('Initializing content script for tab guard.')
 	chrome.runtime.onMessage.removeListener(handleMessage)
 	chrome.runtime.onMessage.addListener(handleMessage)
+	// Ensures the content script handles the current page correctly even if no
+	// message is sent after injection.
+	handleMessage({action: 'url-changed'})
 }
 
 init()
