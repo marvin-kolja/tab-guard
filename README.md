@@ -1,4 +1,4 @@
-# Tab Guard
+# Tab Guard for ChatGPT
 
 Prevents your temporary chats from accidental tab closure.
 
@@ -15,6 +15,11 @@ Prevents your temporary chats from accidental tab closure.
 <img valign="middle" alt="Mozilla Add-on Version" src="https://img.shields.io/amo/v/tab-guard-for-chatgpt?style=flat-square&logo=%20&label=%20">
 </a>
 </div>
+
+## Features
+
+- **Prevents accidental tab closure**: Shows a confirmation dialog when you try to close a tab with a temporary chat.
+- **Remove sidebar and header**: Hides the sidebar and header once a temporary conversation started. Prevents accidental navigation and keeps a visual separation from permanent chats.
 
 ## Development
 
