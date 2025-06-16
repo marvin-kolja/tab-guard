@@ -9,7 +9,10 @@ Prevents your temporary chats from accidental tab closure.
 <img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/61.1.3/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">
 </a>
 <a href="https://addons.mozilla.org/firefox/addon/tab-guard-for-chatgpt">
-<img valign="middle" src="https://img.shields.io/amo/users/tab-guard-for-chatgpt?style=flat-square&color=success&label=used+by&logo=firefox&logoColor=white">
+<img valign="middle" alt="Mozilla Add-on Users" src="https://img.shields.io/amo/users/tab-guard-for-chatgpt?style=flat-square&color=success&label=used+by&logo=firefox&logoColor=white">
+</a>
+<a href="https://addons.mozilla.org/firefox/addon/tab-guard-for-chatgpt">
+<img valign="middle" alt="Mozilla Add-on Version" src="https://img.shields.io/amo/v/tab-guard-for-chatgpt?style=flat-square&logo=%20&label=%20">
 </a>
 </div>
 
