@@ -50,6 +50,10 @@ npm run package
 
 - This will create a web-ext build from `dist` inside the `artifacts` directory.
 
+## Disclaimer
+
+ChatGPT is a trademark of OpenAI OpCo, LLC. This extension is an independent project and is not affiliated with, endorsed by, or sponsored by OpenAI OpCo, LLC.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
