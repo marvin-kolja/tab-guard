@@ -6,13 +6,25 @@ Prevents your temporary chats from accidental tab closure.
 
 <div>
 <a href="https://addons.mozilla.org/firefox/addon/tab-guard-for-chatgpt">
-<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/61.1.3/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">
+<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/firefox/firefox.svg" width="48" alt="Firefox" valign="middle">
 </a>
 <a href="https://addons.mozilla.org/firefox/addon/tab-guard-for-chatgpt">
 <img valign="middle" alt="Mozilla Add-on Users" src="https://img.shields.io/amo/users/tab-guard-for-chatgpt?style=flat-square&color=success&label=used+by&logo=firefox&logoColor=white">
 </a>
 <a href="https://addons.mozilla.org/firefox/addon/tab-guard-for-chatgpt">
 <img valign="middle" alt="Mozilla Add-on Version" src="https://img.shields.io/amo/v/tab-guard-for-chatgpt?style=flat-square&logo=%20&label=%20">
+</a>
+</div>
+
+<div>
+<a href="https://chromewebstore.google.com/detail/tab-guard-for-chatgpt/bddlphiagniphhobapajgiaajgbgpabk">
+<img src="https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg" width="48" alt="Chrome" valign="middle">
+</a>
+<a href="https://chromewebstore.google.com/detail/tab-guard-for-chatgpt/bddlphiagniphhobapajgiaajgbgpabk">
+<img valign="middle" alt="Chrome Web Store Users" src="https://img.shields.io/chrome-web-store/users/bddlphiagniphhobapajgiaajgbgpabk?style=flat-square&color=success&label=used+by&logo=firefox&logoColor=white">
+</a>
+<a href="https://chromewebstore.google.com/detail/tab-guard-for-chatgpt/bddlphiagniphhobapajgiaajgbgpabk">
+<img valign="middle" alt="Chrome Web Store Version" src="https://img.shields.io/chrome-web-store/v/bddlphiagniphhobapajgiaajgbgpabk?style=flat-square&logo=%20&label=%20">
 </a>
 </div>
 
