@@ -5,6 +5,11 @@
 let articleObserver: MutationObserver | null = null
 
 /**
+ * Flag to indicate if the content script is already listening for events.
+ */
+let alreadyListening = false
+
+/**
  * Checks if the current URL is a temporary chat URL by looking at the query
  * parameters.
  */
@@ -160,15 +165,24 @@ function onResizeCallback() {
  */
 function handleMessage(message: {action: string}) {
 	if (message.action === 'url-changed') {
-		if (isTemporaryChatURL()) {
-			window.addEventListener('beforeunload', beforeUnloadCallback)
-			window.addEventListener(
-				CONVERSATION_EXISTS,
-				conversationExistsCallback,
-			)
-			window.addEventListener('resize', onResizeCallback)
-			articleObserver = observeUntilArticle()
+		const isTemporary = isTemporaryChatURL()
+		if (isTemporary) {
+			if (alreadyListening) {
+				console.debug('Already listening for events, skipping setup.')
+			} else {
+				console.debug('Temporary chat URL detected, setting up listeners.')
+				alreadyListening = true
+				window.addEventListener('beforeunload', beforeUnloadCallback)
+				window.addEventListener(
+					CONVERSATION_EXISTS,
+					conversationExistsCallback,
+				)
+				window.addEventListener('resize', onResizeCallback)
+				articleObserver = observeUntilArticle()
+			}
 		} else {
+			console.debug('Not a temporary chat URL, cleaning up listeners.')
+			alreadyListening = false
 			window.removeEventListener('beforeunload', beforeUnloadCallback)
 			window.removeEventListener(
 				CONVERSATION_EXISTS,
